@@ -1,6 +1,6 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { ScrollView, FlatList } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import { users } from './../config/data';
 
 const Feed = props => {
@@ -10,8 +10,9 @@ const Feed = props => {
 
   return (
     <ScrollView>
-      <List>
-        {users.map(user => (
+      <FlatList
+        data={users}
+        renderItem={user => (
           <ListItem
             key={user.login.username}
             roundAvatar
@@ -20,8 +21,8 @@ const Feed = props => {
             subtitle={user.email}
             onPress={() => onLearnMore(user)}
           />
-        ))}
-      </List>
+        )}
+      />
     </ScrollView>
   );
 };
